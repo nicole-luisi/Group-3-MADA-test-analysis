@@ -20,7 +20,7 @@ library(here) #to set paths
 ## ---- loaddata --------
 #path to data
 #note the use of the here() package and not absolute paths
-data_location <- here::here("data","raw_data","exampledata.xlsx")
+data_location <- here::here("data","raw_data","exampledata2.xlsx")
 
 #load data. 
 #note that for functions that come from specific packages (instead of base R)
@@ -62,7 +62,7 @@ skimr::skim(rawdata)
 
 d1 <- rawdata %>% dplyr::filter( Height != "sixty" ) %>% 
                   dplyr::mutate(Height = as.numeric(Height))
-
+d1
 
 # look at partially fixed data again
 skimr::skim(d1)
@@ -77,7 +77,7 @@ d2 <- d1 %>% dplyr::filter(Height != 6)
 
 #height values seem ok now
 skimr::skim(d2)
-
+d2
 
 ## ---- cleandata3 --------
 # now let's look at weight
@@ -93,7 +93,7 @@ skimr::skim(d3)
 # we can do that with simple base R code to mix things up
 d3$Sex <- as.factor(d3$Sex)  
 skimr::skim(d3)
-
+d3
 
 ## ---- cleandata5 --------
 #now we see that there is another NA, but it's not "NA" from R 
@@ -102,8 +102,18 @@ skimr::skim(d3)
 #since this keeps an empty category for Sex, I'm also using droplevels() to get rid of it
 d4 <- d3 %>% dplyr::filter(Sex != "NA") %>% droplevels()
 skimr::skim(d4)
+d4
 
+## ---- cleandata6 --------
+# Lets change Religion variable to a categorical/factor variable
+d4$Religion <- as.factor(d4$Religion)  
+skimr::skim(d4)
+d4
 
+# In rawdata, we had an entry "None" in Religion which would not have given us specific information about a particular religion
+# So we would have wanted to delete that entry/individual from the data set
+# but that individual had height 6 which could have been a typo, or someone mistakenly entered their height in feet
+# So that individual was already deleted  in the step cleandata2.
 
 ## ---- savedata --------
 # all done, data is clean now. 
@@ -113,8 +123,6 @@ processeddata <- d4
 # location to save file
 save_data_location <- here::here("data","processed_data","processeddata.rds")
 saveRDS(processeddata, file = save_data_location)
-
-
 
 ## ---- notes --------
 # anything you don't want loaded into the Quarto file but 
