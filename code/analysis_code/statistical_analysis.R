@@ -16,7 +16,14 @@ data_location <- here::here("data","processed_data","processeddata.rds")
 #load data. 
 mydata <- readRDS(data_location)
 
-
+#check the type of the column  contri3
+str(mydata)
+#boxplot contri3
+boxplot(Height~Religion,data=mydata, main="Height by Religion",
+        xlab="Religion", ylab="Height")
+#scatter plot contri3
+plot(mydata$Weight, mydata$`Number of Siblings`, main="Scatterplot",
+     xlab="Weight ", ylab="Number of siblings", pch=19)
 ######################################
 #Data fitting/statistical analysis
 ######################################
