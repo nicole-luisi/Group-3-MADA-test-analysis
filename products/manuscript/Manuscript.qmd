@@ -109,14 +109,14 @@ knitr::include_graphics(here("results","height_weight_stratified.png"))
 
 ```{r}
 #| label: fig-result2
-#| fig-cap: "Owner please edit here"
+#| fig-cap: "Boxplot of height by religion"
 #| echo: false
 knitr::include_graphics(here("results","HeightByReligion.png"))
 ```
 
 ```{r}
 #| label: fig-result3
-#| fig-cap: "Owner please edit here"
+#| fig-cap: "Scatterplot of weight by number of siblings"
 #| echo: false
 knitr::include_graphics(here("results","ScatterplotweightbyNOS.png"))
 ```
